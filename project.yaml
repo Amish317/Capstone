@@ -1,0 +1,12 @@
+---
+- hosts: ansible
+
+  tasks:
+  - name: create docker image
+    command: docker build -t myapp:latest .
+    args:
+      chdir: /opt/docker
+  - name: create tag
+    command: docker tag myapp:latest imamit13/capstone:latest
+  - name:     push image to dockerhub
+    command: docker push imamit13/capstone:latest
